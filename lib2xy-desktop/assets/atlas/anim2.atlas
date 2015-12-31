@@ -1,0 +1,76 @@
+
+anim2.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+explosion
+  rotate: false
+  xy: 0, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 1
+explosion
+  rotate: false
+  xy: 82, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 2
+explosion
+  rotate: false
+  xy: 164, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 3
+explosion
+  rotate: false
+  xy: 246, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 4
+explosion
+  rotate: false
+  xy: 328, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 5
+implode
+  rotate: false
+  xy: 410, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 1
+implode
+  rotate: false
+  xy: 492, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 2
+implode
+  rotate: false
+  xy: 574, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 3
+implode
+  rotate: false
+  xy: 656, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 4
+implode
+  rotate: false
+  xy: 738, 0
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: 5

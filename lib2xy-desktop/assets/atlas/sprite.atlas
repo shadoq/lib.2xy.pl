@@ -1,0 +1,62 @@
+
+sprite.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+asteroids1
+  rotate: false
+  xy: 0, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+block
+  rotate: false
+  xy: 128, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+block_o
+  rotate: false
+  xy: 256, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+block_x
+  rotate: false
+  xy: 384, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+bullet1
+  rotate: false
+  xy: 640, 104
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+bullet2
+  rotate: false
+  xy: 640, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+bullet3
+  rotate: false
+  xy: 664, 104
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+violet_ship
+  rotate: false
+  xy: 512, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

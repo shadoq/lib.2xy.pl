@@ -1,0 +1,125 @@
+package scene;
+
+import pl.lib2xy.app.*;
+import pl.lib2xy.gui.*;
+import pl.lib2xy.gui.ui.*;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+
+/**
+ *
+ */
+public class $$$ extends Scene{
+
+	@Override
+	public void initialize(){
+
+	}
+
+	@Override
+	public void update(float delta){
+
+	}
+
+	@Override
+	public void render(float delta){
+
+	}
+
+	@Override
+	public void resize(){
+
+	}
+
+	@Override
+	public void pause(){
+
+	}
+
+	@Override
+	public void dispose(){
+
+	}
+
+	@Override
+	public void resume(){
+
+	}
+
+	@Override
+	public void onClick(InputEvent event, int x, int y){
+
+	}
+
+	@Override
+	public void onClick(InputEvent event, Actor actor, int x, int y){
+
+	}
+
+	@Override
+	public void onDrag(int x, int y){
+
+	}
+
+	@Override
+	public void onTouchDown(int x, int y, int button){
+
+	}
+
+	@Override
+	public void onTouchUp(int x, int y, int button){
+
+	}
+
+	@Override
+	public void onKeyDown(int keycode){
+
+	}
+
+	@Override
+	public void onKeyUp(int keycode){
+
+	}
+
+	@Override
+	public void onMouseMoved(int screenX, int screenY){
+
+	}
+
+	@Override
+	public void onZoom(float initialDistance, float distance){
+
+	}
+
+	@Override
+	public void onTap(float x, float y, int count, int button){
+
+	}
+
+	@Override
+	public void onPinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2){
+
+	}
+
+	@Override
+	public void onPan(float x, float y, float deltaX, float deltaY){
+
+	}
+
+	@Override
+	public void onPanStop(float x, float y, int pointer, int button){
+
+	}
+
+	@Override
+	public void onLongPress(float x, float y){
+
+	}
+
+	@Override
+	public void onFling(float velocityX, float velocityY, int button){
+
+	}
+}

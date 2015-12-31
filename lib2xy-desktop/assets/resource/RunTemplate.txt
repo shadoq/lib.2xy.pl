@@ -1,0 +1,195 @@
+package run;
+
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import pl.lib2xy.main.S3;
+import pl.lib2xy.main.S3SceneImpl;
+import pl.lib2xy.main.S3Run;
+import pl.lib2xy.main.S3Screen;
+import scene.Splash;
+
+import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class App{
+
+	public static void main(String[] argc){
+
+		final String configFile = "$$$.cfg";
+
+		final LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+
+		if (S3.cfgJson == null){
+			try {
+				File dir1 = new File(".");
+				String currentDir = dir1.getCanonicalPath();
+
+				FileInputStream fis = new FileInputStream(currentDir + "/" + configFile);
+
+				System.out.println("Current Dir: "+currentDir);
+				System.out.println("FileInputStream: "+fis);
+
+				if (fis != null){
+					S3.cfgJson = S3.jsonReader.parse(fis);
+				}
+			} catch (IOException e){
+				e.printStackTrace();
+			}
+		}
+
+		if (S3.cfgJson == null){
+			final InputStream inputStream = App.class.getClassLoader().getResourceAsStream(configFile);
+
+			System.out.println("Config file: " + configFile);
+			System.out.println("InputStream: " + inputStream);
+
+			if (inputStream != null){
+				S3.cfgJson = S3.jsonReader.parse(inputStream);
+			}
+		}
+
+		if (S3.cfgJson == null){
+			throw new RuntimeException("Config not found ...");
+		}
+
+		//
+		// App Name and version
+		//
+		if (S3.cfgJson.has("title")){
+			S3.cfg.title = S3.cfgJson.getString("title", "$$$");
+		} else {
+			S3.cfg.title = "$$$";
+		}
+		if (S3.cfgJson.has("projectFile")){
+			S3.cfg.projectFile = S3.cfgJson.getString("projectFile", "$$$");
+		} else {
+			S3.cfg.projectFile = "$$$";
+		}
+		if (S3.cfgJson.has("version")){
+			S3.cfg.version = S3.cfgJson.getString("version");
+		}
+		if (S3.cfgJson.has("target")){
+			S3.cfg.target = S3.cfgJson.getString("target");
+		}
+		if (S3.cfgJson.has("forceExit")){
+			cfg.forceExit = S3.cfgJson.getBoolean("forceExit");
+		}
+
+		//
+		// Screen config
+		//
+		String[] screen;
+		if (S3.cfgJson.has("editSize")){
+			screen = S3.cfgJson.getString("editSize", "800x480").split("x");
+		} else {
+			screen = new String[]{"800", "480"};
+		}
+		S3.cfg.editSize = screen[0] + "x" + screen[1];
+
+		String[] target;
+		if (S3.cfgJson.has("targetSize")){
+			target = S3.cfgJson.getString("targetSize", "800x480").split("x");
+		} else {
+			target = new String[]{"800", "480"};
+		}
+		cfg.width = Integer.parseInt(target[0]);
+		cfg.height = Integer.parseInt(target[1]);
+		S3.cfg.targetSize = target[0] + "x" + target[1];
+
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		cfg.x = (int) ((dimension.getWidth() - cfg.width) / 2);
+		cfg.y = (int) ((dimension.getHeight() - cfg.height) / 2);
+
+
+		if (S3.cfgJson.has("resize")){
+			cfg.resizable = S3.cfgJson.getBoolean("resize");
+		} else {
+			cfg.resizable = false;
+		}
+		S3.cfg.resize = cfg.resizable;
+
+		if (S3.cfgJson.has("fullScreen")){
+			cfg.fullscreen = S3.cfgJson.getBoolean("fullScreen");
+		} else {
+			cfg.fullscreen = false;
+		}
+		S3.cfg.fullScreen = cfg.fullscreen;
+
+		if (S3.cfgJson.has("vSync")){
+			cfg.vSyncEnabled = S3.cfgJson.getBoolean("vSync");
+		} else {
+			cfg.vSyncEnabled = true;
+		}
+		S3.cfg.vSync = cfg.vSyncEnabled;
+
+		if (S3.cfgJson.has("viewPortType")){
+			S3.cfg.viewPortType = S3Screen.ViewPortType.valueOf(S3.cfgJson.getString("viewPortType", "" + S3Screen.ViewPortType.Stretch));
+		} else {
+			S3.cfg.viewPortType = S3Screen.ViewPortType.Stretch;
+		}
+		if (S3.cfgJson.has("resolutionType")){
+			S3.cfg.resolutionType = S3Screen.ResolutionType.valueOf(S3.cfgJson.getString("resolutionType", "" + S3Screen.ResolutionType.mdpi));
+		} else {
+			S3.cfg.resolutionType = S3Screen.ResolutionType.mdpi;
+		}
+
+		if (S3.cfgJson.has("multiResolution")){
+			S3.cfg.multiResolution = S3.cfgJson.getBoolean("multiResolution");
+		} else {
+			S3.cfg.multiResolution = false;
+		}
+		if (S3.cfgJson.has("virtualScreen")){
+			S3.cfg.virtualScreen = S3.cfgJson.getBoolean("virtualScreen");
+		} else {
+			S3.cfg.virtualScreen = false;
+		}
+
+		//
+		// Audio Config
+		//
+		if (S3.cfgJson.has("audioBufferCount")){
+			cfg.audioDeviceBufferCount = S3.cfgJson.getInt("audioBufferCount");
+		} else {
+			cfg.audioDeviceBufferCount = 10;
+		}
+		S3.cfg.audioBufferCount = cfg.audioDeviceBufferCount;
+		if (S3.cfgJson.has("disableAudio")){
+			cfg.disableAudio = S3.cfgJson.getBoolean("disableAudio");
+		} else {
+			cfg.disableAudio = false;
+		}
+		S3.cfg.disableAudio = cfg.disableAudio;
+
+		//
+		// Debug Config
+		//
+		if (S3.cfgJson.has("debug")){
+			S3.cfg.debug = S3.cfgJson.getBoolean("debug");
+		} else {
+			S3.cfg.debug = false;
+		}
+		if (S3.cfgJson.has("logging")){
+			S3.cfg.logging = S3.cfgJson.getBoolean("logging");
+		} else {
+			S3.cfg.logging = false;
+		}
+		if (S3.cfgJson.has("ansiLog")){
+			S3.cfg.ansiLog = S3.cfgJson.getBoolean("ansiLog");
+		} else {
+			S3.cfg.ansiLog = false;
+		}
+		if (S3.cfgJson.has("grid")){
+			S3.cfg.grid = S3.cfgJson.getBoolean("grid");
+		} else {
+			S3.cfg.grid = false;
+		}
+
+		System.out.println(S3.cfg.toString());
+
+		S3.disableEffect = false;
+		new LwjglApplication(new S3Run(new Splash()), cfg);
+	}
+}
